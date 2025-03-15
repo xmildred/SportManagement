@@ -1,0 +1,71 @@
+@model finalproject.Models.AdminLoginViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Girişi</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abel:wght@300;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="login">
+        <form asp-action="Login" method="post">
+            <header class="head-form">
+                <h2>Giriş Yap</h2>
+                <p>Kullanıcı adı ve şifrenizle giriş yapınız.</p>
+            </header>
+            <div class="field-set">
+                <span class="input-item">
+                    <i class="fa fa-user-circle"></i>
+                </span>
+                <input class="form-input" asp-for="Username" placeholder="Kullanıcı Adı" required>
+                <br>
+                <span class="input-item">
+                    <i class="fa fa-key"></i>
+                </span>
+                <input class="form-input" asp-for="Password" type="password" placeholder="Şifre" id="pwd" name="password" required>
+                <span>
+                    <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
+                </span>
+                <br>
+                <button type="submit" class="btn">Giriş Yap</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function show() {
+            var p = document.getElementById('pwd');
+            p.setAttribute('type', 'text');
+        }
+
+        function hide() {
+            var p = document.getElementById('pwd');
+            p.setAttribute('type', 'password');
+        }
+
+        var pwShown = 0;
+
+        document.getElementById("eye").addEventListener("click", function () {
+            if (pwShown == 0) {
+                pwShown = 1;
+                show();
+            } else {
+                pwShown = 0;
+                hide();
+            }
+        }, false);
+    </script>
+</body>
+
+</html>

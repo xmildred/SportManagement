@@ -1,0 +1,96 @@
+@model IEnumerable<finalproject.Models.Course>
+
+<style>
+    body {
+        background: linear-gradient(to right, #e2f4f2, #c1e1c1);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .managecourse-container {
+        max-width: 1200px;
+        margin: 80px auto 20px; /* Navbar'dan uzaklığı korur */
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .managecourse h2 {
+        color: #2e8b57;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+    .table thead {
+        background-color: #2e8b57;
+        color: white;
+    }
+    .table th, .table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    .table tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+    .btn {
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .btn-primary {
+        background-color: #2e8b57;
+    }
+    .btn-primary:hover {
+        background-color: #27ae60;
+    }
+    .btn-link {
+        color: #2e8b57;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .btn-link:hover {
+        color: #1e6b4e;
+    }
+</style>
+
+<div class="managecourse-container">
+    <h2>Kursları Düzenle</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kurs ID</th>
+                <th>Kurs Adı</th>
+                <th>Başlangıç Tarihi</th>
+                <th>Bitiş Tarihi</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.CourseID</td>
+                    <td>@course.CourseName</td>
+                    <td>@course.StartDate</td>
+                    <td>@course.EndDate</td>
+                    <td>
+                         <a href="@Url.Action("EditCourse", "Admin", new { courseId = course.CourseID })" class="btn btn-success">Düzenle</a>
+                            <a href="@Url.Action("DeleteCourse", "Admin", new { courseId = course.CourseID })" class="btn btn-danger" onclick="return confirm('Bu kursu silmek istediğinizden emin misiniz?');">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href="@Url.Action("AdminPage", "Admin")" class="btn btn-primary">Geri Dön</a>
+</div>

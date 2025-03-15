@@ -1,0 +1,105 @@
+@model finalproject.Models.Instructor
+
+<h2>Eğitmeni Düzenle</h2>
+
+<style>
+    body {
+        background: linear-gradient(to right, #e2f4f2, #c1e1c1);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content-container {
+        max-width: 800px;
+        margin: 80px auto 20px;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #2e8b57;
+        text-align: left;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 50px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table td, table th {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    table th {
+        background-color: #2e8b57;
+        color: white;
+        text-align: left;
+    }
+
+    table td {
+        background-color: #f9f9f9;
+    }
+
+    input[type="submit"] {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #2e8b57;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #27ae60;
+    }
+
+    a:hover {
+        background-color: #2980b9;
+    }
+</style>
+
+<div class="content-container">
+    <form asp-action="EditInstructor">
+        <table>
+            <tr>
+                <th><label>Eğitmen ID</label></th>
+                <td><input asp-for="InstructorID" /></td>
+            </tr>
+            <tr>
+                <th><label>Eğitmen Adı</label></th>
+                <td><input asp-for="InstructorName" /></td>
+            </tr>
+            <tr>
+                <th><label>Eğitmen Soyadı</label></th>
+                <td><input asp-for="InstructorSurname" /></td>
+            </tr>
+            <tr>
+                <th><label>Eğitmen Email</label></th>
+                <td><input asp-for="InstructorEmail" /></td>
+            </tr>
+            <tr>
+                <th><label>Eğitmen Telefon Numarası</label></th>
+                <td><input asp-for="InstructorPhoneNumber" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" value="Kaydet" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div style="text-align: right; margin-top: 20px;">
+    <a href="@Url.Action("AdminPage", "Admin")" class="btn btn-success">Geri Dön</a>
+</div>
+</div>

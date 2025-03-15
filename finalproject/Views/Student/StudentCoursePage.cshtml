@@ -1,0 +1,87 @@
+@model IEnumerable<finalproject.Models.Course>
+
+@{
+    ViewData["Title"] = "Kurslar";
+}
+
+<h2>Kurslar</h2>
+
+<div class="course-container">
+    @foreach (var course in Model)
+    {
+        <div class="course-item">
+            <img src="@course.PhotoUrl" alt="@course.CourseName" class="course-image" />
+            <h3>@course.CourseName</h3>
+            <p>Instructor ID: @course.InstructorID</p>
+            <p>Room ID: @course.RoomID</p>
+            <p>Capacity: @course.Capacity</p>
+            <p>Start Date: @course.StartDate</p>
+            <p>End Date: @course.EndDate</p>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form asp-action="ApplyForCourse" method="post" class="apply-form">
+                <input type="hidden" name="CourseID" value="@course.CourseID" />
+                <button type="submit" class="btn">Başvur</button>
+                </form>
+            }
+            else
+            {
+                <p><a href="@Url.Action("StudentLogin", "Student")">Giriş yapın</a> ve başvurun.</p>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .course-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        background: linear-gradient(to bottom, #98FB98, #F0FFF0);
+        border-radius: 10px;
+    }
+    .course-item {
+        background-color: #F0FFF0;
+        border: 2px solid #32CD32;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.2);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .course-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 16px rgba(0, 128, 0, 0.3);
+    }
+    .course-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    .apply-form {
+        margin-top: 10px;
+    }
+    .btn {
+        background-color: #32CD32;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+        background-color: #28a745;
+    }
+    .course-details h3 {
+        color: #2F4F4F;
+        margin-top: 10px;
+    }
+    .course-details p {
+        color: #006400;
+        margin: 5px 0;
+    }
+</style>

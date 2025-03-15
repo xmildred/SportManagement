@@ -1,0 +1,35 @@
+@model IEnumerable<finalproject.Models.Instructor>
+
+<h2>Eğitmenler</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Eğitmen ID</th>
+            <th>Eğitmen Adı</th>
+            <th>Eğitmen Soyadı</th>
+            <th>Eğitmen Email</th>
+            <th>Eğitmen Telefon Numarası</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var instructor in Model)
+        {
+            <tr>
+                <td>@instructor.InstructorID</td>
+                <td>@instructor.InstructorName</td>
+                <td>@instructor.InstructorSurname</td>
+                <td>@instructor.InstructorEmail</td>
+                <td>@instructor.InstructorPhoneNumber</td>
+                <td>
+                    <a href="@Url.Action("EditInstructor", "Admin", new { id = instructor.InstructorID })" class="btn btn-success">Düzenle</a>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div style="text-align: right; margin-top: 20px;">
+    <a href="@Url.Action("AdminPage", "Admin")" class="btn btn-success">Geri Dön</a>
+</div>

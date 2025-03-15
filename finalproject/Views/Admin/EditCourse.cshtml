@@ -1,0 +1,132 @@
+@model finalproject.Models.EditCourseModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kursu Düzenle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #e0ffe0, #f0fff0);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .EditCourse-container {
+            background-color: #f5fff5;
+            border: 2px solid #66cc66;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 128, 0, 0.3);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: left;
+            margin: 20px auto;
+            
+        }
+
+        h2 {
+            color: #2e8b57;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #66cc66;
+            padding-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2e8b57;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #e8ffe8;
+            color: #2e8b57;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus {
+            border-color: #66cc66;
+            box-shadow: 0 0 8px rgba(102, 204, 102, 0.5);
+        }
+
+        .btn {
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #2e8b57;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #27ae60;
+            box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.3);
+        }
+
+        span {
+            color: #e74c3c;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="EditCourse-container">
+        <h2>Kursu Düzenle</h2>
+
+        <form asp-action="EditCourse" method="post">
+            <input type="hidden" asp-for="CourseID" />
+
+            <div>
+                <label asp-for="CourseName">Kurs Adı:</label>
+                <input asp-for="CourseName" type="text" />
+                <span asp-validation-for="CourseName"></span>
+            </div>
+
+            <div>
+                <label asp-for="Capacity">Kontenjan:</label>
+                <input asp-for="Capacity" type="number" />
+                <span asp-validation-for="Capacity"></span>
+            </div>
+
+            <div>
+                <label asp-for="StartDate">Başlangıç Tarihi:</label>
+                <input asp-for="StartDate" type="date" />
+                <span asp-validation-for="StartDate"></span>
+            </div>
+
+            <div>
+                <label asp-for="EndDate">Bitiş Tarihi:</label>
+                <input asp-for="EndDate" type="date" />
+                <span asp-validation-for="EndDate"></span>
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit" class="btn">Kaydet</button>
+                <a href="@Url.Action("ManageCourses", "Admin")" class="btn">Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

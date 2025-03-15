@@ -1,0 +1,183 @@
+@model finalproject.Models.ManageUsersViewModel
+
+@{
+    ViewData["Title"] = "Kullanıcıları Yönet";
+}
+
+<style>
+    body {
+        background: linear-gradient(to right, #e2f4f2, #c1e1c1);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .content-container {
+        max-width: 1200px;
+        margin: 80px auto 20px; /* Navbar'dan uzaklığı korur */
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        color: #2e8b57;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    h3 {
+        color: #2e8b57;
+        margin-top: 30px;
+        border-bottom: 2px solid #2e8b57;
+        padding-bottom: 5px;
+    }
+    .table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+    .table thead {
+        background-color: #2e8b57;
+        color: white;
+    }
+    .table th, .table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    .table tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+    .btn {
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .btn-warning {
+        background-color: #f39c12;
+    }
+    .btn-warning:hover {
+        background-color: #e67e22;
+    }
+    .btn-success {
+        background-color: #2e8b57;
+    }
+    .btn-success:hover {
+        background-color: #27ae60;
+    }
+    .btn-back {
+        background-color: #3498db;
+        color: white;
+        margin-top: 20px;
+        display: block;
+        width: fit-content;
+        text-align: center;
+        margin: 20px auto;
+    }
+    .btn-back:hover {
+        background-color: #2980b9;
+    }
+</style>
+
+<div class="content-container">
+    <h2>Kullanıcıları Yönet</h2>
+
+    <h3>Kullanıcılar</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kullanıcı ID</th>
+                <th>Kullanıcı Adı</th>
+                <th>Kullanıcı Email</th>
+                <th>Kullanıcı Rolü</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.UserID</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@user.Role</td>
+                    <td>
+                        @if (user.Role == "Admin")
+                        {
+                            <form asp-action="ToggleAdminRole" method="post" asp-route-userId="@user.UserID">
+                                <button type="submit" class="btn btn-warning">Admini Sil</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="ToggleAdminRole" method="post" asp-route-userId="@user.UserID">
+                                <button type="submit" class="btn btn-success">Admin Ekle</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Öğrenciler</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Öğrenci ID</th>
+                <th>Öğrenci Adı</th>
+                <th>Öğrenci Soyadı</th>
+                <th>Öğrenci Email</th>
+                <th>Öğrenci Telefon Numarası</th>
+                <th>Kayıtlı Olduğu Kurs</th>
+                <th>Kullanıcı ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td>@student.StudentID</td>
+                    <td>@student.StudentName</td>
+                    <td>@student.StudentSurname</td>
+                    <td>@student.StudentEmail</td>
+                    <td>@student.StudentPhoneNumber</td>
+                    <td>@student.RegisteredCourse</td>
+                    <td>@student.UserID</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Eğitmenler</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Eğitmen ID</th>
+                <th>Eğitmen Adı</th>
+                <th>Eğitmen Soyadı</th>
+                <th>Eğitmen Email</th>
+                <th>Eğitmen Telefon Numarası</th>
+                <th>Kullanıcı ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var instructor in Model.Instructors)
+            {
+                <tr>
+                    <td>@instructor.InstructorID</td>
+                    <td>@instructor.InstructorName</td>
+                    <td>@instructor.InstructorSurname</td>
+                    <td>@instructor.InstructorEmail</td>
+                    <td>@instructor.InstructorPhoneNumber</td>
+                    <td>@instructor.UserID</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a href=" AdminPage" class="btn btn-success">Admin Sayfasına Dön</a>
+</div>

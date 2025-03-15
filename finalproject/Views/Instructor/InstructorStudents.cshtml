@@ -1,0 +1,106 @@
+@model IEnumerable<finalproject.Models.StudentCourseViewModel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenciler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #98FB98, #F0FFF0);
+            margin: 0;
+            padding: 0;
+        }
+        .instructorstudent-container {
+            background-color: #F0FFF0;
+            border: 2px solid #32CD32;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.2);
+            padding: 20px;
+            max-width: 1000px;
+            margin: 100px auto 20px;
+            overflow-x: auto;
+            position: relative;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .logout-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #32CD32;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .logout-button:hover {
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructorstudent-container">
+        <h2>Öğrencileriniz</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Öğrenci ID</th>
+                    <th>Öğrenci Adı</th>
+                    <th>Öğrenci Soyadı</th>
+                    <th>Kayıtlı Kurs</th>
+                    <th>Kurs ID</th>
+                    <th>Kurs Adı</th>
+                    <th>Başlangıç Tarihi</th>
+                    <th>Bitiş Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model == null || !Model.Any())
+                {
+                    <tr>
+                        <td colspan="8">Veri bulunamadı.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.StudentID</td>
+                            <td>@item.StudentName</td>
+                            <td>@item.StudentSurname</td>
+                            <td>@item.RegisteredCourse</td>
+                            <td>@item.CourseID</td>
+                            <td>@item.CourseName</td>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        
+        <a href="@Url.Action("Index", "Home")" class="logout-button">Çıkış Yap</a>
+    </div>
+</body>
+</html>

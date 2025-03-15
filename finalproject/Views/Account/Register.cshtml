@@ -1,0 +1,95 @@
+@model finalproject.Models.RegisterViewModel
+
+<style>
+    body {
+        background: linear-gradient(to right, #e2f4f2, #c1e1c1);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .form-container {
+        max-width: 600px;
+        margin: 80px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .form-header h2 {
+        color: #295c29;
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0;
+        position: relative;
+        display: inline-block;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .form-header h2::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -10px;
+        width: 50%;
+        height: 5px;
+        background: #2e8b57;
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+    .form-container input[type="text"], 
+    .form-container input[type="email"], 
+    .form-container input[type="tel"],
+    .form-container input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .form-container input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #2e8b57;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .form-container input[type="submit"]:hover {
+        background-color: #27ae60;
+    }
+</style>
+
+<div class="form-container">
+    <div class="form-header">
+        <h2>Kayıt Ol</h2>
+    </div>
+    <form asp-action="Register">
+        <div>
+            <label for="studentName">Öğrenci Adı</label>
+            <input asp-for="StudentName" type="text" id="studentName" />
+        </div>
+        <div>
+            <label for="studentSurname">Öğrenci Soyadı</label>
+            <input asp-for="StudentSurname" type="text" id="studentSurname" />
+        </div>
+        <div>
+            <label for="studentEmail">Öğrenci Emaili</label>
+            <input asp-for="StudentEmail" type="email" id="studentEmail" />
+        </div>
+        <div>
+            <label for="studentPhoneNumber">Öğrenci Telefon Numarası</label>
+            <input asp-for="StudentPhoneNumber" type="tel" id="studentPhoneNumber" />
+        </div>
+        <div>
+            <label for="password">Şifre</label>
+            <input asp-for="Password" type="password" id="password" />
+        </div>
+        <input type="submit" value="Kayıt Ol" />
+    </form>
+</div>

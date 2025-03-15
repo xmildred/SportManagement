@@ -1,0 +1,128 @@
+/* Genel Stil Ayarları */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    position: relative; /* Pozisyonları yönetmek için */
+    overflow: hidden; /* Dairelerin dışarı taşmasını engeller */
+}
+
+/* Arka Plan Daireler */
+body::before, body::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: #32a060; /* Yeşil renk */
+    z-index: -1; /* İçeriğin arkasında kalmasını sağlar */
+}
+
+/* Büyük Yarım Daire (Sol Alt) */
+body::before {
+    width: 600px; /* Büyük daire için genişlik */
+    height: 600px; /* Büyük daire için yükseklik */
+    left: -200px; /* Sol altta konumlandırma */
+    bottom: -200px; /* Alt kısımda konumlandırma */
+    transform: rotate(180deg); /* Yarım daire görünümü için dönüş */
+}
+
+/* Küçük Daire (Sağ Üst) */
+body::after {
+    width: 300px; /* Küçük daire için genişlik */
+    height: 300px; /* Küçük daire için yükseklik */
+    right: -100px; /* Sağ üstte konumlandırma */
+    top: -100px; /* Üstte konumlandırma */
+}
+
+/* Header Stili */
+header {
+    background: linear-gradient(to bottom right, #ffffff, #32a060); /* Koyu yeşil arka plan */
+    color: #fff;
+    padding: 20px 0;
+}
+
+header .container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Gölge efekti */
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Hero Bölümü Stili */
+#hero {
+    background: linear-gradient(to top right, #ffffff, #32a060); /* Açık yeşil arka plan */
+    color: #fff;
+    padding: 377px 50px;
+    text-align: center;
+    position: relative; /* Yarım dairelerle birlikte */
+    z-index: 1; /* Arka plan dairelerin önünde kalmasını sağlar */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Gölge efekti */
+}
+
+#hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    
+}
+
+#hero p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+#hero .btn {
+    background: #2a6b2a;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Genel Bölümler Stili */
+section {
+    padding: 40px 20px;
+}
+
+section h2 {
+    color: #004d00;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Form Stili */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input, form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background: #004d00;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Footer Stili */
+footer {
+    background: #32a060; /* Açık yeşil arka plan */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
